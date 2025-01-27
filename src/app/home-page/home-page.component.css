@@ -1,0 +1,194 @@
+/*  */
+
+.recipe-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .filter-options {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 20px;
+    padding: 20px; 
+    flex-wrap: wrap; 
+  }
+  
+  mat-form-field {
+    width: 200px; 
+    margin: 10px; 
+  }
+  
+  .filter-buttons {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  button {
+    font-size: 14px; 
+    padding: 10px 15px;
+  }
+  
+  .recipe-card {
+    margin-top: -10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .recipe-card h3 {
+    margin: 12px 0;
+    font-size: 1.2rem;
+  }
+  
+  .recipe-card p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .recipe-card a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  .inputSearch {
+    margin-top: 3px;
+    margin-left: 20%;
+    display: flex; 
+    align-items: center;
+    width: 600px; 
+   /* border: 2px solid #ddd;*/
+    border-radius: 0px; 
+    overflow: hidden; 
+  }
+  
+  .inputSearch input {
+    border: none; 
+    outline: none; 
+    padding: 10px 16px; 
+    flex: 1; 
+    font-size: 16px; 
+  }
+  
+  .inputSearch button {
+    background-color: #3F51B5; 
+    color: #fff;
+    border: none; 
+    padding: 10px 16px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .inputSearch button:hover {
+    background-color: #b9b9b9; 
+  }
+  
+  .inputSearch i {
+    font-size: 13px; 
+  }
+ 
+.recipe-details {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .recipe-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .recipe-card:hover {
+    transform: scale(1.05);
+  }
+  .recipe-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .dialog-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 80%;
+    max-height: 80vh; 
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dialog-content img {
+    max-width: 100%;
+    height: auto; 
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .dialog-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .dialog-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .dialog-content li {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .dialog-content p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .mat-dialog-actions button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    background-color: #1976d2; 
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mat-dialog-actions button:hover {
+    background-color: #000000; 
+  }
+  
+  

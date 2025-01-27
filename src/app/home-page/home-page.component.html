@@ -1,0 +1,168 @@
+<mat-toolbar color="primary">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    rel="stylesheet"
+  />
+
+  <span class="material-symbols-outlined" size="20px"> food_bank </span>
+  &nbsp;&nbsp;
+  <span class="material-symbols-outlined" color=" #ff5722;">Recipe</span>
+  <div class="inputSearch">
+    <input
+      type="text"
+      placeholder="Search for recipes"
+      [(ngModel)]="searchTerm"
+    />
+    <button
+      type="button"
+      aria-label="Search"
+      [(ngModel)]="searchTerm"
+      (click)="filterRecipes(searchTerm)"
+    >
+      <span class="material-icons">search</span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="filter-options">
+  <b>Filter the Recipe based on Your preference:</b>
+  <mat-form-field appearance="fill">
+    <mat-label>Meal Type</mat-label>
+    <mat-select
+      [(value)]="selectedMealType"
+      (selectionChange)="mealType(selectedMealType)"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option value="breakfast">Breakfast</mat-option>
+      <mat-option value="lunch">Lunch</mat-option>
+      <mat-option value="dinner">Dinner</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+ 
+  <mat-form-field appearance="fill">
+    <mat-label>Dietary Restrictions</mat-label>
+    <mat-select
+      [(value)]="selectedDietaryRestriction"
+      (selectionChange)="dietRestriction(selectedDietaryRestriction)"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option value="vegetarian">Vegetarian</mat-option>
+      <mat-option value="vegan">Vegan</mat-option>
+      <mat-option value="gluten-free">Gluten-Free</mat-option>
+      <mat-option value="high-protein">High-Protein</mat-option>
+      <mat-option value="Mustard-Free">Mustard-Free</mat-option>
+      <mat-option value="Lupine-Free">Lupine-Free</mat-option>
+      <mat-option value="Mollusk-Free">Mollusk-Free</mat-option>
+      <mat-option value="Kosher">Kosher</mat-option>
+      <mat-option value="Alcohol-Free">Alcohol-Free</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Diet labels</mat-label>
+    <mat-select
+      [(value)]="selectedDietLabels"
+      (selectionChange)="dietlabel(selectedDietLabels)"
+    >
+      <mat-option value="">All</mat-option>
+      <mat-option value="Balanced">Balanced</mat-option>
+      <mat-option value="High-Fiber">High-Fiber</mat-option>
+      <mat-option value="Low-Fat">Low-Fat</mat-option>
+      <mat-option value="Low-Carb">Low-Carb</mat-option>
+      <mat-option value="Low-Sodium">Low-Sodium</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="filter-buttons">
+    <button mat-raised-button color="primary" (click)="showFavorites()">
+      Show Favorites
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      *ngIf="showRecipes"
+      (click)="showAllRecipes()"
+    >
+      Show All Recipes
+    </button>
+  </div>
+</div>
+<div class="recipe-list">
+  <div class="recipe-card" *ngFor="let item of filteredRecipes">
+    <img
+      *ngIf="item.recipe.image"
+      [src]="item.recipe.image"
+      [alt]="item.recipe.label"
+    />
+    <h3 (click)="openRecipeDetails(item.recipe)">{{ item.recipe.label }}</h3>
+    <p>Source: {{ item.recipe.source }}</p>
+    <p>Mealtype: {{ item.recipe.mealType }}</p>
+    <a [href]="item.recipe.url" target="">View Full Recipe</a><br />
+    <button
+      mat-icon-button
+      color="primary"
+      (click)="toggleFavorite(item.recipe)"
+      style="align-items: left"
+    >
+      <mat-icon *ngIf="item.recipe.isFavorite">favorite</mat-icon>
+      <mat-icon *ngIf="!item.recipe.isFavorite">favorite_border</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="selectedRecipe" class="recipe-details">
+    <div class="dialog-content">
+      <h2 mat-dialog-title>{{ selectedRecipe.label }}</h2>
+      <img
+        *ngIf="selectedRecipe.image"
+        [src]="selectedRecipe.image"
+        [alt]="selectedRecipe.label"
+      />
+      <mat-dialog-content class="mat-typography">
+        <p><strong>Ingredients:</strong></p>
+        <ul>
+          <li *ngFor="let ingredient of selectedRecipe.ingredients">
+            <strong>{{ ingredient.quantity }} {{ ingredient.measure }}</strong>
+            of {{ ingredient.food }} ({{ ingredient.text }})
+          </li>
+        </ul>
+        <p><strong>Time:</strong> {{ selectedRecipe.totalTime }} minutes</p>
+        <p>
+          <strong>Weight:</strong>
+          {{ selectedRecipe.totalWeight | number : "1.2-2" }} g
+        </p>
+
+        <p>
+          <strong>Cuisine Type:</strong>
+          {{ selectedRecipe.cuisineType?.join(", ") }}
+        </p>
+        <p>
+          <strong>Diet Labels:</strong>
+          {{ selectedRecipe.dietLabels?.join(", ") }}
+        </p>
+        <p>
+          <strong>Dish Type:</strong> {{ selectedRecipe.dishType?.join(", ") }}
+        </p>
+        <p><strong>Yield:</strong> Serves {{ selectedRecipe.yield }}</p>
+        <p>
+          <strong>Health Labels:</strong>
+          {{ selectedRecipe.healthLabels?.join(", ") }}
+        </p>
+        <p>
+          <strong> ingredientLines:</strong>
+          {{ selectedRecipe.ingredientLines?.join(", ") }}
+        </p>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="selectedRecipe = null"
+        >
+          Close
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>
+ 
